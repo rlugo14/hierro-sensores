@@ -9,6 +9,7 @@ import {
   TabsSelection,
 } from "../features/tabsSelection/tabsSelectionSlice";
 import { fetchAllData } from "../utils/allDataFetcher";
+import { AUTH_HEADER } from "../constants";
 
 const Home: FunctionComponent = () => {
   const index = useAppSelector(selectIndex);

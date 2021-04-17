@@ -24,7 +24,7 @@ const PressureCard: FunctionComponent = () => {
             ) : (
               <p className="text-xl mx-9">
                 {pressure.status === "idle" && pressure.value !== null
-                  ? pressure.value.toPrecision(5)
+                  ? pressure.value.toFixed(2)
                   : "-"}
               </p>
             )}

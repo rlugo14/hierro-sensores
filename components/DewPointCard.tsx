@@ -24,7 +24,7 @@ const DewPointCard: FunctionComponent = () => {
             ) : (
               <p className="text-xl mx-9">
                 {dewPoint.status === "idle" && dewPoint.value !== null
-                  ? dewPoint.value.toPrecision(5)
+                  ? Math.round(dewPoint.value).toFixed(0)
                   : "-"}
               </p>
             )}

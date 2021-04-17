@@ -27,7 +27,7 @@ const RelativeHumidityCard: FunctionComponent = () => {
               <p className="text-xl mx-9">
                 {relativeHumidity.status === "idle" &&
                 relativeHumidity.value !== null
-                  ? relativeHumidity.value.toPrecision(5)
+                  ? relativeHumidity.value.toFixed(2)
                   : "-"}
               </p>
             )}

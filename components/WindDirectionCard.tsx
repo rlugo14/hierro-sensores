@@ -26,7 +26,7 @@ const WindDirectionCard: FunctionComponent = () => {
             ) : (
               <p className="text-xl mx-9">
                 {windDirection.status == "idle" && windDirection.avg !== null
-                  ? windDirection.avg.toPrecision(5)
+                  ? Math.round(windDirection.avg).toFixed(0)
                   : "-"}
               </p>
             )}
@@ -40,7 +40,7 @@ const WindDirectionCard: FunctionComponent = () => {
             ) : (
               <p className="text-xl mx-9">
                 {windDirection.status == "idle" && windDirection.max !== null
-                  ? windDirection.max.toPrecision(5)
+                  ? Math.round(windDirection.max).toFixed(0)
                   : "-"}
               </p>
             )}

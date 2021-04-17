@@ -23,7 +23,7 @@ const TemperatureCard: FunctionComponent = () => {
             ) : (
               <p className="text-xl mx-9">
                 {temperature.status === "idle" && temperature.avg !== null
-                  ? temperature.avg.toPrecision(5)
+                  ? Math.round(temperature.avg).toFixed(0)
                   : "-"}
               </p>
             )}
@@ -37,7 +37,7 @@ const TemperatureCard: FunctionComponent = () => {
             ) : (
               <p className="text-xl mx-9">
                 {temperature.status === "idle" && temperature.max !== null
-                  ? temperature.max.toPrecision(5)
+                  ? Math.round(temperature.max).toFixed(0)
                   : "-"}
               </p>
             )}
@@ -51,7 +51,7 @@ const TemperatureCard: FunctionComponent = () => {
             ) : (
               <p className="text-xl mx-9">
                 {temperature.status === "idle" && temperature.min !== null
-                  ? temperature.min.toPrecision(5)
+                  ? Math.round(temperature.min).toFixed(0)
                   : "-"}
               </p>
             )}

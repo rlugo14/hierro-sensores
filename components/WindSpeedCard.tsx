@@ -24,7 +24,7 @@ const WindSpeedCard: FunctionComponent = () => {
             ) : (
               <p className="text-xl mx-9">
                 {windSpeed.status === "idle" && windSpeed.avg !== null
-                  ? windSpeed.avg.toPrecision(5)
+                  ? windSpeed.avg.toFixed(2)
                   : "-"}
               </p>
             )}
@@ -38,7 +38,7 @@ const WindSpeedCard: FunctionComponent = () => {
             ) : (
               <p className="text-xl mx-9">
                 {windSpeed.status === "idle" && windSpeed.max !== null
-                  ? windSpeed.max.toPrecision(5)
+                  ? windSpeed.max.toFixed(2)
                   : "-"}
               </p>
             )}

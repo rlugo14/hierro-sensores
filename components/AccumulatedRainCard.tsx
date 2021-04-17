@@ -27,7 +27,7 @@ const AccumulatedRainCard: FunctionComponent = () => {
               <p className="text-xl mx-9">
                 {accumulatedRain.status === "idle" &&
                 accumulatedRain.value !== null
-                  ? accumulatedRain.value.toPrecision(5)
+                  ? accumulatedRain.value.toFixed(2)
                   : "-"}
               </p>
             )}

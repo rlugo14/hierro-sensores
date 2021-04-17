@@ -24,7 +24,7 @@ const RainIntensityCard: FunctionComponent = () => {
             ) : (
               <p className="text-xl mx-9">
                 {rainIntensity.status === "idle" && rainIntensity.value !== null
-                  ? rainIntensity.value.toPrecision(5)
+                  ? rainIntensity.value.toFixed(2)
                   : "-"}
               </p>
             )}
