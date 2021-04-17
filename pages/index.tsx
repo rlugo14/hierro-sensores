@@ -23,7 +23,7 @@ const Home: FunctionComponent = () => {
       <Head>
         <title>El Hierro | Sensores</title>
       </Head>
-      <div className="flex flex-wrap pl-3 items-center h-14 min-w-screen bg-blue-600 shadow-lg-all space-x-4">
+      <div className="sticky top-0 flex flex-wrap pl-3 items-center h-14 min-w-screen bg-blue-600 shadow-md border-solid border-2 border-gray-200 space-x-4 z-10">
         <div
           className={`text-white border-b-2 ${
             index === 0 ? "border-solid" : "border-none"
@@ -58,7 +58,7 @@ const Home: FunctionComponent = () => {
         </div>
       </div>
       <div className="p-4">
-        <MeasureCards index={index} />
+        <MeasureCards />
       </div>
     </div>
   );

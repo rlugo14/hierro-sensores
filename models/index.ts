@@ -2,40 +2,54 @@ export interface Temperature {
   avg: number;
   max: number;
   min: number;
+  status?: Status;
 }
 
 export interface Pressure {
   value: number;
+  status?: Status;
 }
 
 export interface DewPoint {
   value: number;
+  status?: Status;
 }
 
 export interface RainIntensity {
   value: number;
+  status?: Status;
 }
 
 export interface AccumulatedRain {
   value: number;
+  status?: Status;
 }
 
 export interface RelativeHumidity {
   value: number;
+  status?: Status;
 }
 
 export interface RelativeHumidity {
   value: number;
+  status?: Status;
 }
 
 export interface WindDirection {
   avg: number;
   max: number;
+  status?: Status;
 }
 
 export interface WindSpeed {
   avg: number;
   max: number;
+  status?: Status;
+}
+
+export enum Status {
+  IDLE = "idle",
+  LOADING = "loading",
 }
 
 export interface Measures {

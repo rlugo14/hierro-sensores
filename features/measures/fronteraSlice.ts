@@ -11,20 +11,20 @@ import {
   RelativeHumidity,
   WindDirection,
   WindSpeed,
+  Status,
 } from "../../models";
 
-type FronteraState = Measures & { status: "idle" | "loading" };
+type FronteraState = Measures;
 
 const initialState: FronteraState = {
-  temperature: { avg: null, min: null, max: null },
-  pressure: { value: null },
-  dewPoint: { value: null },
-  rainIntensity: { value: null },
-  accumulatedRain: { value: null },
-  relativeHumidity: { value: null },
-  windDirection: { avg: null, max: null },
-  windSpeed: { avg: null, max: null },
-  status: "idle",
+  temperature: { avg: null, min: null, max: null, status: Status.IDLE },
+  pressure: { value: null, status: Status.IDLE },
+  dewPoint: { value: null, status: Status.IDLE },
+  rainIntensity: { value: null, status: Status.IDLE },
+  accumulatedRain: { value: null, status: Status.IDLE },
+  relativeHumidity: { value: null, status: Status.IDLE },
+  windDirection: { avg: null, max: null, status: Status.IDLE },
+  windSpeed: { avg: null, max: null, status: Status.IDLE },
 };
 
 const apiBase = ApiLocationsRoutes.FRONTERA;
@@ -84,8 +84,8 @@ export const fetchAccumulatedRain = createAsyncThunk(
     return result;
   }
 );
-export const fetchRelativeHumdity = createAsyncThunk(
-  "measures/frontera/fetchRelativeHumdity",
+export const fetchRelativeHumidity = createAsyncThunk(
+  "measures/frontera/fetchRelativeHumidity",
   async () => {
     const result: RelativeHumidity = await Promise.resolve(
       fetch(
@@ -134,64 +134,72 @@ export const fronteraSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchTemperature.pending, (state) => {
-        state.status = "loading";
+        state.temperature.status = Status.LOADING;
       })
       .addCase(fetchTemperature.fulfilled, (state, action) => {
-        state.status = "idle";
         state.temperature = action.payload;
+        state.temperature.status = Status.IDLE;
       })
-      .addCase(fetchDewPoint.pending, (state, action) => {
-        state.status = "loading";
-        state.dewPoint = action.payload;
+      .addCase(fetchDewPoint.pending, (state) => {
+        state.dewPoint.status = Status.LOADING;
       })
       .addCase(fetchDewPoint.fulfilled, (state, action) => {
-        state.status = "idle";
         state.dewPoint = action.payload;
+        state.dewPoint.status = Status.IDLE;
       })
       .addCase(fetchAccumulatedRain.pending, (state) => {
-        state.status = "loading";
+        state.accumulatedRain.status = Status.LOADING;
       })
       .addCase(fetchAccumulatedRain.fulfilled, (state, action) => {
-        state.status = "idle";
         state.accumulatedRain = action.payload;
+        state.accumulatedRain.status = Status.IDLE;
       })
       .addCase(fetchRainIntensity.pending, (state) => {
-        state.status = "loading";
+        state.rainIntensity.status = Status.LOADING;
       })
       .addCase(fetchRainIntensity.fulfilled, (state, action) => {
-        state.status = "idle";
         state.rainIntensity = action.payload;
+        state.rainIntensity.status = Status.IDLE;
       })
-      .addCase(fetchRelativeHumdity.pending, (state) => {
-        state.status = "loading";
+      .addCase(fetchRelativeHumidity.pending, (state) => {
+        state.relativeHumidity.status = Status.LOADING;
       })
-      .addCase(fetchRelativeHumdity.fulfilled, (state, action) => {
-        state.status = "idle";
+      .addCase(fetchRelativeHumidity.fulfilled, (state, action) => {
         state.relativeHumidity = action.payload;
+        state.relativeHumidity.status = Status.IDLE;
       })
       .addCase(fetchWindDirection.pending, (state) => {
-        state.status = "loading";
+        state.windDirection.status = Status.LOADING;
       })
       .addCase(fetchWindDirection.fulfilled, (state, action) => {
-        state.status = "idle";
         state.windDirection = action.payload;
+        state.windDirection.status = Status.IDLE;
       })
       .addCase(fetchWindSpeed.pending, (state) => {
-        state.status = "loading";
+        state.windSpeed.status = Status.LOADING;
       })
       .addCase(fetchWindSpeed.fulfilled, (state, action) => {
-        state.status = "idle";
         state.windSpeed = action.payload;
+        state.windSpeed.status = Status.IDLE;
       })
       .addCase(fetchPressure.pending, (state) => {
-        state.status = "loading";
+        state.pressure.status = Status.LOADING;
       })
       .addCase(fetchPressure.fulfilled, (state, action) => {
-        state.status = "idle";
         state.pressure = action.payload;
+        state.pressure.status = Status.IDLE;
+      })
+      .addCase(fetchAll.pending, (state) => {
+        state.temperature.status = Status.LOADING;
+        state.pressure.status = Status.LOADING;
+        state.dewPoint.status = Status.LOADING;
+        state.rainIntensity.status = Status.LOADING;
+        state.accumulatedRain.status = Status.LOADING;
+        state.relativeHumidity.status = Status.LOADING;
+        state.windDirection.status = Status.LOADING;
+        state.windSpeed.status = Status.LOADING;
       })
       .addCase(fetchAll.fulfilled, (state, action) => {
-        state.status = "idle";
         state.pressure = action.payload.pressure;
         state.accumulatedRain = action.payload.accumulatedRain;
         state.dewPoint = action.payload.dewPoint;
@@ -200,6 +208,14 @@ export const fronteraSlice = createSlice({
         state.temperature = action.payload.temperature;
         state.windDirection = action.payload.windDirection;
         state.windSpeed = action.payload.windSpeed;
+        state.pressure.status = Status.IDLE;
+        state.temperature.status = Status.IDLE;
+        state.dewPoint.status = Status.IDLE;
+        state.rainIntensity.status = Status.IDLE;
+        state.accumulatedRain.status = Status.IDLE;
+        state.relativeHumidity.status = Status.IDLE;
+        state.windDirection.status = Status.IDLE;
+        state.windSpeed.status = Status.IDLE;
       });
   },
 });
@@ -220,6 +236,5 @@ export const selectWindDirection = (state: RootState) =>
   state.fronteraReducer.windDirection;
 export const selectWindSpeed = (state: RootState) =>
   state.fronteraReducer.windSpeed;
-export const selectStatus = (state: RootState) => state.fronteraReducer.status;
 
 export default fronteraSlice.reducer;

@@ -56,6 +56,8 @@ export const fetchSingleValueData = async (
   location: Locations
 ) => {
   let dataId: number;
+  let isPressureObserved =
+    location === Locations.FRONTERA || location === Locations.TIMIJIRAQUE;
   switch (dataType) {
     case DataType.DEW_POINT:
       dataId = DATA_IDS[location].dewPoint;
@@ -67,8 +69,11 @@ export const fetchSingleValueData = async (
       dataId = DATA_IDS[location].accumulatedRain;
       break;
     case DataType.RELATIVE_HUMIDITY:
-    default:
       dataId = DATA_IDS[location].relativeHumidity;
+      break;
+    case DataType.PRESSURE:
+      dataId = DATA_IDS[location].pressure;
+    default:
   }
 
   const responseData: Results = await Promise.resolve(
@@ -78,8 +83,10 @@ export const fetchSingleValueData = async (
   );
 
   return {
-    value: responseData.results.find((result) => result.validity === "valid")
-      .result,
+    value: !!responseData.results
+      ? responseData.results.find((result) => result.validity === "valid")
+          .result
+      : null,
   };
 };
 
