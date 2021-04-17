@@ -3,8 +3,8 @@ FROM node:12 as BUILD_IMAGE
 
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci
 COPY . .
+RUN npm ci
 RUN npm run build
 RUN npm prune --production
 
