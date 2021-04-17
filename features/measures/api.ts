@@ -179,21 +179,21 @@ export const fetchAllData = async (location: Locations): Promise<any> => {
     windDirection: {
       avg:
         validResults.find((result) =>
-          result.datastream.includes(locationIds.temperature.avg.toString())
+          result.datastream.includes(locationIds.windDirection.avg.toString())
         )?.result ?? null,
       max:
         validResults.find((result) =>
-          result.datastream.includes(locationIds.temperature.max.toString())
+          result.datastream.includes(locationIds.windDirection.max.toString())
         )?.result ?? null,
     },
     windSpeed: {
       avg:
         validResults.find((result) =>
-          result.datastream.includes(locationIds.temperature.avg.toString())
+          result.datastream.includes(locationIds.windSpeed.avg.toString())
         )?.result ?? null,
       max:
         validResults.find((result) =>
-          result.datastream.includes(locationIds.temperature.max.toString())
+          result.datastream.includes(locationIds.windSpeed.max.toString())
         )?.result ?? null,
     },
   };
