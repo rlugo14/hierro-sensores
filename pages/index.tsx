@@ -1,15 +1,13 @@
-import React, { FunctionComponent, useState, useEffect } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import Head from "next/head";
 import MeasureCards from "../components/MeasureCards";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { GetServerSideProps } from "next";
 import {
   selectIndex,
   set,
   TabsSelection,
 } from "../features/tabsSelection/tabsSelectionSlice";
 import { fetchAllData } from "../utils/allDataFetcher";
-import { AUTH_HEADER } from "../constants";
 
 const Home: FunctionComponent = () => {
   const index = useAppSelector(selectIndex);

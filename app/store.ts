@@ -13,7 +13,7 @@ export const store = configureStore({
     timijiraqueReducer,
     tabsSelectionReducer,
   },
-  devTools: true,
+  devTools: process.env.DEV ? true : false,
 });
 
 export type AppDispatch = typeof store.dispatch;
