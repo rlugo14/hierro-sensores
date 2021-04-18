@@ -10,10 +10,10 @@ The Api key can be injected as an evironment variable under the name `API_KEY`. 
 
 ### env files automatically readed by NextJS
 
-- .env.local
-- .env.development.local
-- .env.test.local
-- .env.production.local
+- `.env.local`
+- `.env.development.local`
+- `.env.test.local`
+- `.env.production.local`
 
 #### Example env file
 
