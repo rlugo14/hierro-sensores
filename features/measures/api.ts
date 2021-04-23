@@ -56,8 +56,6 @@ export const fetchSingleValueData = async (
   location: Locations
 ) => {
   let dataId: number;
-  let isPressureObserved =
-    location === Locations.FRONTERA || location === Locations.TIMIJIRAQUE;
   switch (dataType) {
     case DataType.DEW_POINT:
       dataId = DATA_IDS[location].dewPoint;
