@@ -4,7 +4,7 @@ import * as dehesa from "../features/measures/dehesaSlice";
 import * as timijiraque from "../features/measures/timijiraqueSlice";
 import { AppDispatch } from "../app/store";
 
-export const fetchAllData = (dispatcher: AppDispatch) => {
+export const fetchAllData = (dispatcher) => {
   dispatcher(malpaso.fetchAll());
   dispatcher(frontera.fetchAll());
   dispatcher(dehesa.fetchAll());

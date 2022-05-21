@@ -13,6 +13,8 @@ export const store = configureStore({
     timijiraqueReducer,
     tabsSelectionReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
   devTools: process.env.DEV ? true : false,
 });
 
